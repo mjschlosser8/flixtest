@@ -23,7 +23,6 @@ class compDetailsPage {
     deleteCompButton() {
        return cy.get('input').contains('Delete this computer');
     }
-
 }
 
 export default compDetailsPage;
