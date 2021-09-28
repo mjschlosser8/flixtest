@@ -13,7 +13,7 @@ class indexPage {
     }
 
     addConfirmation(comp_name) {
-        cy.get('div').contains('Done! Computer ${comp_name} has been created', {timeout:10000})
+        cy.get('div').contains('Done ! Computer ' + comp_name + ' has been created', {timeout:10000})
     }
 
     deleteConfirmation() {
