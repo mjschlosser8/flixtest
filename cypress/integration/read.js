@@ -13,6 +13,8 @@ describe('Read Test', () => {
       discontinued: '2021-09-27',
       company: 3 //Should be the value 'RCA'
     }
+      }).then((response) => {
+        expect(response.status).to.eq(200)
       })
     })
     it('Opens the Computer Database App, searches for a record, and verifies record data', () => {

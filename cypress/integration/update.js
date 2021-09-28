@@ -14,6 +14,8 @@ describe('Update Test', () => {
       discontinued: '2021-09-27',
       company: 3 //Should be the value 'RCA'
     }
+      }).then((response) => {
+        expect(response.status).to.eq(200)
       })
     })
 

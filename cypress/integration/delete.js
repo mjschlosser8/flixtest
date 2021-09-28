@@ -13,6 +13,8 @@ describe('Delete Test', () => {
     discontinued: '2021-09-27',
     company: 3
   }
+    }).then((response) => {
+      expect(response.status).to.eq(200)
     })
   })
     it('Searches for the record', () => {
