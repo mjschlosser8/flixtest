@@ -4,6 +4,7 @@ describe('Update Test', () => {
     const newdate = '2021-09-28' //Value to update in comp record
 
     before ('Create the computer record that will be updated', () => {
+    //Note: Since no new inputs are stored, this is for proof of concept only.
       cy.request({
       method: 'POST',
       url: '/',
@@ -21,10 +22,10 @@ describe('Update Test', () => {
 
     it('Opens the Computer Database App,  and verifies result', () => {
         cy.visit('/') //Visits base URL set in cypress.json
-        cy.get('#searchbox').type(existcompname) //Type name into filter field
-        cy.get('#searchsubmit').click() //Clicks search filter button
+        index.searchFilterField().type(existcompname) //Type name into filter field
+        index.searchSubmitButton().click() //Clicks search filter button
         cy.get('a').contains(existcompname, {timeout: 10000}).click() //Finds and clicks the link for the new record
-        cy.get('#discontinued').clear().type(newdate) //Types new 'discontinued' date
+        details.discDateField().clear().type(newdate) //Types new 'discontinued' date
 
         // Note: This saves the changes, then checks the response body of the record
         // to make sure the changes are saved. Since I can't modify records in the

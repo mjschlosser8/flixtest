@@ -16,8 +16,12 @@ class compDetailsPage {
         return cy.get('#company');
     }
 
-    newCompSubmitButton() {
-        return cy.get('[type=submit]').contains('Save this computer')
+    compCreateButton() {
+        return cy.get('input').contains('Create this computer')
+    }
+
+    compSaveButton() {
+        return cy.get('input').contains('Save this computer')
     }
 
     deleteCompButton() {
