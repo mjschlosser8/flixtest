@@ -17,7 +17,7 @@ class compDetailsPage {
     }
 
     newCompSubmitButton() {
-        return cy.get('[type=submit]')
+        return cy.get('[type=submit]').contains('Save this computer')
     }
 
     deleteCompButton() {

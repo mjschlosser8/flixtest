@@ -1,7 +1,7 @@
 describe('Update Test', () => {
     const compname = 'Update Test ' + (Math.random().toFixed(3) * 1000) //Creates computer name with a unique number to avoid duplicate names
     const existcompname = 'Amiga 1200' //Existing record to verify functionality
-    const newdate = '2021-09-28'
+    const newdate = '2021-09-28' //Value to update in comp record
 
     before ('Create the computer record that will be updated', () => {
       cy.request({
@@ -23,14 +23,24 @@ describe('Update Test', () => {
         cy.get('#searchsubmit').click() //Clicks search filter button
         cy.get('a').contains(existcompname, {timeout: 10000}).click() //Finds and clicks the link for the new record
         cy.get('#discontinued').clear().type(newdate) //Types new 'discontinued' date
+
+        // Note: This saves the changes, then checks the response body of the record
+        // to make sure the changes are saved. Since I can't modify records in the
+        // gatling.io app, this checks the existing value. If writing was possible,
+        // I would have line 36 check for the "newdate" variable value.
         cy.location('pathname').then(recurl => {
             const compid = recurl.split('/')[2]
             cy.get('[type=submit]').contains('Save this computer').click()
             cy.get('div').contains('Done ! Computer ' + existcompname + ' has been updated', {timeout:10000})//Wait for page to contain Done! Computer Testing Machine has been updated
-            cy.request({
-            method: 'GET',
-            url: compid
-                })
+            cy.request('GET', compid).then((response) => {
+                expect(response.status).to.eq(200)
+                expect(response.body).to.include('name="discontinued" value="1996-01-01"')
+            })
+
+            //Cleanup - deletes created record
+            cy.request('POST', compid + '/delete').then((response) => {
+                expect(response.status).to.eq(200)
+            })
         })
     })
 })

@@ -9,7 +9,7 @@ describe('Create Flow Test', () => {
       cy.get('#introduced').type('2021-09-26') // Types 'introduced' date
       cy.get('#discontinued').type('2021-09-27') //Types 'discontinued' date
       cy.get('#company').select('RCA')
-      cy.get('[type=submit]').click()
+      cy.get('input').contains('Create this computer').click()
       cy.get('div').contains('Done ! Computer ' + newcompname + ' has been created', {timeout:10000})//Wait for page to contain Done! Computer Testing Machine has been created
 
       //NOTE: Due to the testing environment not saving new records, the below code is
