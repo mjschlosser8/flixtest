@@ -1,5 +1,6 @@
 import indexPage from "../page_objects/indexPage"
 import compDetailsPage from "../page_objects/compDetailsPage"
+
 const index = new indexPage()
 const details = new compDetailsPage()
 
@@ -8,7 +9,7 @@ describe('Create Flow Test', () => {
     const existcompname = 'Amiga 1200' //Variable for checking an existing record
     it('Opens the Computer Database App, creates a record, and verifies result', () => {
       //CREATE TEST
-      cy.visit('/') //Visits base URL set in cypress.json
+      index.openApp() //Visits base URL set in cypress.json
       index.addButton().click() //Clicks New computer button
       details.compNameField().type(newcompname) // Types name into name field
       details.introDateField().type('2021-09-26') // Types 'introduced' date
@@ -22,9 +23,14 @@ describe('Create Flow Test', () => {
 
       index.searchFilterField().type(existcompname)//Type name into filter field
       index.searchSubmitButton().click()//Clicks search filter button
-      cy.get('a').contains(existcompname)
       cy.contains('01 Oct 1992') //Verifies introduced date is set as expected in index
       cy.contains('01 Jan 1996') //Verifies discontinued date is set as expected in index
       cy.contains('Commodore International') //Verifies selected company displays in index
+      index.locateLink(existcompname)
+    })
+    
+    after('Deletes record created in test', () => {
+      //Deletes the record. Proof of concept only.
+      index.cleanupDelete(existcompname)
     })
   })
