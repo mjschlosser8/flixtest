@@ -18,11 +18,15 @@ class indexPage {
     }
 
     checkAddConfirmation(comp_name) {
-        cy.get('div').contains('Done ! Computer ' + comp_name + ' has been created', {timeout:10000})
+        return cy.get('div').contains('Done ! Computer ' + comp_name + ' has been created', {timeout:10000});
     }
 
-    checkDeleteConfirmation() {
-        return cy.get('div').contains('Done! Computer has been deleted', {timeout:10000});
+    checkUpdatedConfirmation(comp_name) {
+        return cy.get('div').contains('Done ! Computer ' + comp_name + ' has been updated', {timeout:10000});
+    }
+
+    checkDeleteConfirmation(comp_name) {
+        return cy.get('div').contains('Done ! Computer ' + comp_name + ' has been deleted', {timeout:10000});
     }
 
     locateLink(linktext) {

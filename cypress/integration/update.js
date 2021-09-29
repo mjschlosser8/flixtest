@@ -16,7 +16,7 @@ describe('Update Test', () => {
       utils.createRecord(compname)
     })
 
-    it('Opens the Computer Database App,  and verifies result', () => {
+    it('Opens app and updates a record', () => {
         index.openApp() //Visits base URL set in cypress.json
         index.searchFilterField().type(existcompname) //Type name into filter field
         index.searchSubmitButton().click() //Clicks search filter button
@@ -25,21 +25,20 @@ describe('Update Test', () => {
 
         // Note: This saves the changes, then checks the response body of the record
         // to make sure the changes are saved. Since I can't modify records in the
-        // gatling.io app, this checks the existing value. If writing was possible,
-        // I would have line 45 check for the "newdate" variable value.
+        // gatling.io app, this checks the value of an existing record.
         cy.location('pathname').then(recurl => {
-            const compid = recurl.split('/')[2]
-            cy.get('[type=submit]').contains('Save this computer').click()
-            cy.get('div').contains('Done ! Computer ' + existcompname + ' has been updated', {timeout:10000})//Wait for page to contain Done! Computer Testing Machine has been updated
-            cy.request('GET', compid).then((response) => {
-                expect(response.status).to.eq(200)
-                expect(response.body).to.include('name="discontinued" value="1996-01-01"')
-                })
+          const compid = recurl.split('/')[2]
+          details.compSaveButton().click()
+          index.checkUpdatedConfirmation(existcompname) //Wait for page to contain Done! Computer Testing Machine has been updated
+          cy.request('GET', compid).then((response) => {
+              expect(response.status).to.eq(200)
+              expect(response.body).to.include('name="discontinued" value="1996-01-01"')
+              })
         })
     })
 
-      after('Deletes record created in before hook', () => {
-        //Proof of concept only since data cannot be modified.
+    after('Deletes record created in before hook', () => {
+      //Proof of concept only since data cannot be modified.
         index.cleanupDelete(existcompname)
       })
 

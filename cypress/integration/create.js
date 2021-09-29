@@ -6,7 +6,7 @@ const details = new compDetailsPage()
 
 describe('Create Flow Test', () => {
     const newcompname = 'Create/Read Test ' + (Math.random().toFixed(3) * 1000)
-    const existcompname = 'Amiga 1200' //Variable for checking an existing record
+    const existcompname = 'Amiga 1200' //Variable for checking an existing record due to env limitations
     it('Opens the Computer Database App, creates a record, and verifies result', () => {
       //CREATE TEST
       index.openApp() //Visits base URL set in cypress.json
@@ -26,11 +26,11 @@ describe('Create Flow Test', () => {
       cy.contains('01 Oct 1992') //Verifies introduced date is set as expected in index
       cy.contains('01 Jan 1996') //Verifies discontinued date is set as expected in index
       cy.contains('Commodore International') //Verifies selected company displays in index
-      index.locateLink(existcompname)
+      index.locateLink(existcompname) //Locates link for record to verify record exists.
     })
     
     after('Deletes record created in test', () => {
-      //Deletes the record. Proof of concept only.
+      //Proof of concept only.
       index.cleanupDelete(existcompname)
     })
   })
