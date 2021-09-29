@@ -27,6 +27,10 @@ class compDetailsPage {
     deleteCompButton() {
        return cy.get('input').contains('Delete this computer');
     }
+
+    missingDataError() {
+        return cy.get('span').contains('Failed to refine type : Predicate isEmpty() did not fail.')
+    }
 }
 
 export default compDetailsPage;

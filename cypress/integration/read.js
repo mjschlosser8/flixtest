@@ -6,7 +6,7 @@ const index = new indexPage()
 const details = new compDetailsPage()
 const utils = new Utilities()
 
-describe('Read Test', () => {
+describe('Read Flow Test', () => {
     const compname = 'Read Test ' + (Math.random().toFixed(3) * 1000) //Creates computer name with a unique number to avoid duplicate names
     const existcompname = 'Amiga 1200' //Name of existing record to verify functionality
 

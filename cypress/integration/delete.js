@@ -6,7 +6,7 @@ const index = new indexPage()
 const utils = new Utilities()
 const details = new compDetailsPage()
 
-describe('Delete Test', () => {
+describe('Delete Flow Test', () => {
   const compname = 'Delete Test ' + (Math.random().toFixed(3) * 1000)
   const existcompname = 'Amiga 1200' //Existing record to verify functionality
 
@@ -27,8 +27,8 @@ describe('Delete Test', () => {
         cy.request('GET', compid).then((response) => {
             expect(response.status).to.eq(200 /* 404 */) // Limitation due to not being able to delete records - this would normally check for a '404' status code.
             
-            //Fallback in case delete request is unsuccessful.
-            if (response.status != 200)
+            //Fallback in case delete request from detail page is unsuccessful.
+            if (response.status != 200 /* 404 */)
               index.cleanupDelete(existcompname)
         })
       })
