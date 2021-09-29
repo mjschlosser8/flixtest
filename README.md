@@ -6,4 +6,5 @@ This test framework utilizes JavaScript, Cypress and Node.js. In order to run th
 
 1. Download Node.js here: https://nodejs.org/en/download/ 
 1. Follow these steps to download and install the Cypress framework: https://docs.cypress.io/guides/getting-started/installing-cypress
-1. To open the Cypress test runner: https://docs.cypress.io/guides/getting-started/installing-cypress#Opening-Cypress
+1. To open the Cypress Test Runner: https://docs.cypress.io/guides/getting-started/installing-cypress#Opening-Cypress
+1. Docs on using the Test Runner: https://docs.cypress.io/guides/core-concepts/test-runner
