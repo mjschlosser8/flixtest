@@ -6,7 +6,7 @@ const index = new indexPage()
 const details = new compDetailsPage()
 const utils = new Utilities()
 
-describe('Update Test', () => {
+describe('Update Flow Test', () => {
     const compname = 'Update Test ' + (Math.random().toFixed(3) * 1000) //Creates computer name with a unique number to avoid duplicate names
     const existcompname = 'Amiga 1200' //Existing record to verify functionality
     const newdate = '2021-09-28' //Value to update in comp record

@@ -16,7 +16,9 @@ describe('Record with special characters test', () => {
         details.companyList().select('RCA') //Selects RCA from company list
         details.compNameField().type(newcompname) // Types name into name field
         details.compCreateButton().click() //Clicks the 'Create this computer' button
-        index.checkAddConfirmation(newcompname) //Checks that the success message is displayed
+        index.checkAddConfirmation(newcompname) //Checks that the success message is displayed.
+
+        // Note: Since I cannot create new records, I can't verify that the record itself displays the characters.
       })
       
       after('Deletes record created in test', () => {
