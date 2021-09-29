@@ -15,12 +15,12 @@ describe('Record with special characters test', () => {
         details.discDateField().type('2021-09-27') //Types 'discontinued' date
         details.companyList().select('RCA') //Selects RCA from company list
         details.compNameField().type(newcompname) // Types name into name field
-        details.compCreateButton().click()
-        index.checkAddConfirmation(newcompname)
+        details.compCreateButton().click() //Clicks the 'Create this computer' button
+        index.checkAddConfirmation(newcompname) //Checks that the success message is displayed
       })
       
       after('Deletes record created in test', () => {
-        //Proof of concept only. This would find and delete the record created in the test.
+        //Proof of concept only. This would normally find and delete the record created in the before hook.
         index.cleanupDelete(existcompname)
       })
 

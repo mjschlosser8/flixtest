@@ -38,7 +38,7 @@ class indexPage {
     }
 
     checkNoResultsMessage() {
-       return cy.get('em').contains('Nothing to display')
+       return cy.get('em').contains('Nothing to display');
     }
 
     cleanupDelete(linktext) {

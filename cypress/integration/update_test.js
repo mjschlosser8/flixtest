@@ -29,16 +29,19 @@ describe('Update Test', () => {
         cy.location('pathname').then(recurl => {
           const compid = recurl.split('/')[2]
           details.compSaveButton().click()
-          index.checkUpdatedConfirmation(existcompname) //Wait for page to contain Done! Computer Testing Machine has been updated
+          index.checkUpdatedConfirmation(existcompname) //Wait for page to contain the updated success message.
+          index.searchFilterField().type(existcompname) //Type name into filter field
+          index.searchSubmitButton().click() //Clicks search filter button
+          cy.contains('01 Jan 1996') //Verifies new date displays (Proof of concept only, this checks for an existing date for the record since data cannot be modified)
           cy.request('GET', compid).then((response) => {
               expect(response.status).to.eq(200)
-              expect(response.body).to.include('name="discontinued" value="1996-01-01"')
+              expect(response.body).to.include('name="discontinued" value="1996-01-01"') //Validates that the updated values are returned in the record.
               })
         })
     })
 
     after('Deletes record created in before hook', () => {
-      //Proof of concept only since data cannot be modified.
+      //Proof of concept only. This would normally find and delete the record created in the before hook.
         index.cleanupDelete(existcompname)
       })
 

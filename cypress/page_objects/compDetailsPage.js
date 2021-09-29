@@ -17,11 +17,11 @@ class compDetailsPage {
     }
 
     compCreateButton() {
-        return cy.get('input').contains('Create this computer')
+        return cy.get('input').contains('Create this computer');
     }
 
     compSaveButton() {
-        return cy.get('input').contains('Save this computer')
+        return cy.get('input').contains('Save this computer');
     }
 
     deleteCompButton() {
@@ -29,7 +29,7 @@ class compDetailsPage {
     }
 
     missingDataError() {
-        return cy.get('span').contains('Failed to refine type : Predicate isEmpty() did not fail.')
+        return cy.get('span').contains('Failed to refine type : Predicate isEmpty() did not fail.');
     }
 }
 

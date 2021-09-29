@@ -16,13 +16,13 @@ describe('Create Flow Test', () => {
       details.discDateField().type('2021-09-27') //Types 'discontinued' date
       details.companyList().select('RCA') //Selects RCA from company list
       details.compCreateButton().click()
-      index.checkAddConfirmation(newcompname)//Wait for page to contain Done! Computer Testing Machine has been created
+      index.checkAddConfirmation(newcompname) //Wait for page to contain Done! Computer Testing Machine has been created
 
       //NOTE: Due to the testing environment not saving new records, the below code is
       //a proof of concept of how I would verify the record is present.
 
       index.searchFilterField().type(existcompname)//Type name into filter field
-      index.searchSubmitButton().click()//Clicks search filter button
+      index.searchSubmitButton().click() //Clicks search filter button
       cy.contains('01 Oct 1992') //Verifies introduced date is set as expected in index
       cy.contains('01 Jan 1996') //Verifies discontinued date is set as expected in index
       cy.contains('Commodore International') //Verifies selected company displays in index
@@ -30,7 +30,7 @@ describe('Create Flow Test', () => {
     })
     
     after('Deletes record created in test', () => {
-      //Proof of concept only.
+      //Proof of concept only. This would normally find and delete the record created in the before hook.
       index.cleanupDelete(existcompname)
     })
   })

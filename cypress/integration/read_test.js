@@ -16,19 +16,19 @@ describe('Read Flow Test', () => {
       })
     it('Opens the Computer Database App, searches for a record, and verifies record data', () => {
         index.openApp() //Visits base URL set in cypress.json
-        index.searchFilterField().type(existcompname)//Type name into filter field
+        index.searchFilterField().type(existcompname) //Type name into filter field
         index.searchSubmitButton().click()//Clicks search filter button
         cy.contains('01 Oct 1992') //Verifies introduced date is set as expected in index
         cy.contains('01 Jan 1996') //Verifies discontinued date is set as expected in index
         cy.contains('Commodore International') //Verifies selected company displays in index
-        index.locateLink(existcompname).click()//Verify page contains computer page link and clicks it
+        index.locateLink(existcompname).click() //Verify page contains computer page link and clicks it
         details.introDateField().should('have.value','1992-10-01') //Verifies introduced date is set as expected on details page
         details.discDateField().should('have.value','1996-01-01') //Verifies discontinued date is set as expected on details page
-        details.companyList().should('have.value','6')
+        details.companyList().should('have.value','6') //Verifies that the selected company value is set in the record.
 
     })
     after('Deletes record created in before hook', () => {
-        //Proof of concept only.
+        //Proof of concept only. This would normally find and delete the record created in the before hook.
           index.cleanupDelete(existcompname)
      })
 })
