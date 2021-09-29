@@ -3,7 +3,7 @@ import indexPage from "../page_objects/indexPage"
 const index = new indexPage()
 
 describe('Header results total test', () => {
-    it('Verifies search results header displays correct singular/plural form of "computers"', () => {
+    it('Verifies search results header displays correct result number and singular/plural form of "computers"', () => {
         index.openApp() //Visits base URL set in cypress.json
         index.searchFilterField().type('Arra')//searches for Arra - returns one result
         index.searchSubmitButton().click()//Clicks search filter button
