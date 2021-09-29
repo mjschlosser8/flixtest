@@ -37,6 +37,10 @@ class indexPage {
         cy.get('h1').contains(header_text);
     }
 
+    checkNoResultsMessage() {
+       return cy.get('em').contains('Nothing to display')
+    }
+
     cleanupDelete(linktext) {
         this.openApp()
         this.searchFilterField().type(linktext)//Type name into filter field

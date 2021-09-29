@@ -23,7 +23,10 @@ describe('Delete Flow Test', () => {
       cy.location('pathname').then(recurl => {
         const compid = recurl.split('/')[2] //Gets the path to the record detail page
         details.deleteCompButton().click('bottom') //Clicks the delete button
-        index.checkDeleteConfirmation(existcompname)//Wait for page to contain Done! Computer Testing Machine has been updated
+        index.checkDeleteConfirmation(existcompname) //Wait for page to contain Done! Computer Testing Machine has been updated
+        index.searchFilterField().type(compname) //Type name of deleted computer 
+        index.searchSubmitButton().click() //Clicks search filter button. No record should be found (Proof of concept only since records cannot be deleted)
+        index.checkNoResultsMessage // Checks that the 'No results found' message is displayed. (Proof of concept only since records cannot be deleted)
         cy.request('GET', compid).then((response) => {
             expect(response.status).to.eq(200 /* 404 */) // Limitation due to not being able to delete records - this would normally check for a '404' status code.
             
