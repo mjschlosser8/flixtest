@@ -33,6 +33,10 @@ class indexPage {
         return cy.get('a').contains(linktext);
     }
 
+    headerCheck(header_text) {
+        cy.get('h1').contains(header_text);
+    }
+
     cleanupDelete(linktext) {
         this.openApp()
         this.searchFilterField().type(linktext)//Type name into filter field
